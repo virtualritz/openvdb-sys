@@ -6,7 +6,7 @@ For convenience the crate version tracks the tagged OpenVDB release it builds ag
 
 ## Caveat
 
-This crate *only supports macOS* at the moment. And even there the build fails. An issue has been logged with the bindgen developers.
+This crate *only supports macOS* at the moment. And even there the build fails. An [issue](https://github.com/rust-lang/rust-bindgen/issues/1768) has been logged with the bindgen developers.
 
 ## Prerequisites
 
