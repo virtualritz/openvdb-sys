@@ -6,7 +6,7 @@ For convenience the crate version tracks the tagged OpenVDB release it builds ag
 
 ## Caveat
 
-This crate *only supports macOS* at the moment. And even there the build fails. An issue has been logged with the bindgen developers.
+This crate *only supports macOS* at the moment. And even there the build fails. An [issue](https://github.com/rust-lang/rust-bindgen/issues/1768) has been logged with the bindgen developers.
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ Install dependencies for your platform. Scroll down to the resp. [section on the
 
 ## Building
 
-No suprises here. The build
+No suprises here. The build may take a while as Cargo will build OpenVDB first, via CMake.
 
 ```
 > cargo build
