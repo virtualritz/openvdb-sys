@@ -25,7 +25,7 @@ Install dependencies for your platform. Scroll down to the resp. [section on the
 
 ## Building
 
-No suprises here.
+No suprises here. The build
 
 ```
 > cargo build
