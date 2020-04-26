@@ -1,0 +1,8 @@
+[package]
+name = "openvdb-sys"
+version = "7.0.0"
+authors = ["Moritz Moeller <virtualritz@protonmail.com>"]
+
+[build-dependencies]
+cmake = "0.1.42"
+bindgen = "0.53.2"
