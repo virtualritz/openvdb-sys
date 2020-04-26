@@ -25,7 +25,7 @@ Install dependencies for your platform. Scroll down to the resp. [section on the
 
 ## Building
 
-No suprises here. The build
+No suprises here. The build may take a while as Cargo will build OpenVDB first, via CMake.
 
 ```
 > cargo build
