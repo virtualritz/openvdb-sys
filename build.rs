@@ -8,7 +8,7 @@ use std::process::Command;
 fn main() {
     // The crate major.minor version should track the
     // OpenVDB lib version
-    let open_vdb_version = "7.0.0";
+    let openvdb_version = "7.0.0";
 
     // FIXME make this generic & work on Linux, macOS & Windows
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
@@ -16,13 +16,13 @@ fn main() {
 
     // Check out the tag we're tracking with our crate version
     Command::new("git")
-        .arg(format!("checkout tags/v{}", open_vdb_version))
+        .arg(format!("checkout tags/v{}", openvdb_version))
         .current_dir(current_dir)
         .output()
-        .expect(format!("Could not check out OpenVDB v{}.", open_vdb_version).as_str());
+        .expect(format!("Could not check out OpenVDB v{}.", openvdb_version).as_str());
 
     // Build OpenVDB
-    let open_vdb = PathBuf::from(cmake::build("openvdb"));
+    let openvdb_path = PathBuf::from(cmake::build("openvdb"));
 
     // Generate Rust bindings
     let openvdb_bindings = bindgen::Builder::default()
@@ -34,7 +34,7 @@ fn main() {
         //.enable_cxx_namespaces()
         //.clang_arg("-xc++") // change to cpp mode
         .clang_arg("-std=c++11")
-        .clang_arg(format!("-I/{}", open_vdb.join("include").display()))
+        .clang_arg(format!("-I/{}", openvdb_path.join("include").display()))
         .clang_arg("-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Versions/A/Headers/")
         .clang_arg("-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Headers/")
         .clang_arg("-I/Library/Developer/CommandLineTools/usr/include/c++/v1/")
@@ -50,6 +50,6 @@ fn main() {
         .expect("Couldn't write OpenVDB bindings.");
 
     // Emit linker settings
-    println!("cargo:rustc-link-search={}", open_vdb.join("lib").display());
+    println!("cargo:rustc-link-search={}", openvdb_path.join("lib").display());
     println!("cargo:rustc-link-lib=openvdb");
 }
